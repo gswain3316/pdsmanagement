@@ -1,20 +1,13 @@
 package com.zerohunger.pdsmanagement.repository;
 
-import java.util.List;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 
 @Repository
-public interface OrderGrantRepository extends MongoRepository<OrderGrant, String> {
+public interface OrderGrantRepository extends ReactiveMongoRepository<OrderGrant, String> {
 
-	@Override
-	default List<OrderGrant> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	
