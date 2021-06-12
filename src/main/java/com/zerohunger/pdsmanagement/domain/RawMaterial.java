@@ -14,5 +14,9 @@ public class RawMaterial {
 	@Id
 	private String id;
 	private RationItem rationItem;
+	public RawMaterial(RationItem rationItem) {
+		super();
+		this.rationItem = rationItem;
+	}
 	
 }

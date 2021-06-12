@@ -13,5 +13,10 @@ public class Meta {
 	private String id;
 	private String spocName;
 	private String spocEmail;
+	public Meta(String spocName, String spocEmail) {
+		super();
+		this.spocName = spocName;
+		this.spocEmail = spocEmail;
+	}
 
 }

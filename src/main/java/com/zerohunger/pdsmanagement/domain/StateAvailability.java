@@ -1,5 +1,7 @@
 package com.zerohunger.pdsmanagement.domain;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,7 +14,11 @@ public class StateAvailability {
 	@Id
 	private String id;
 	private String stateId;
-	private String rawMaterialId;
-	private Double availableQuantity;
+	private List<Availability> availability;
+	public StateAvailability(String stateId, List<Availability> availability) {
+		super();
+		this.stateId = stateId;
+		this.availability = availability;
+	}
 	
 }
