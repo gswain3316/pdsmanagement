@@ -26,5 +26,16 @@ public class OrderRequest {
 	
 	@LastModifiedDate 
 	private Date modifiedOn;
+	public OrderRequest(String requestingStateId, String rawMaterialId, Double quantity, String unitsRequested,
+			Boolean isActive, Date createdOn, Date modifiedOn) {
+		super();
+		this.requestingStateId = requestingStateId;
+		this.rawMaterialId = rawMaterialId;
+		this.quantity = quantity;
+		this.unitsRequested = unitsRequested;
+		this.isActive = isActive;
+		this.createdOn = createdOn;
+		this.modifiedOn = modifiedOn;
+	}
 	
 }

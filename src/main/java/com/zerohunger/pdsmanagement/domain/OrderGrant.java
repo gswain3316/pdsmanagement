@@ -24,5 +24,13 @@ public class OrderGrant {
 	
 	@LastModifiedDate 
 	private Date modifiedOn;
+	public OrderGrant(String grantingStateId, String requestId, Double quantity, Date createdOn, Date modifiedOn) {
+		super();
+		this.grantingStateId = grantingStateId;
+		this.requestId = requestId;
+		this.quantity = quantity;
+		this.createdOn = createdOn;
+		this.modifiedOn = modifiedOn;
+	}
 	
 }

@@ -14,5 +14,11 @@ public class State {
 	private String stateName;
 	private Meta metaData;
 	private Double capacity;
+	public State(String stateName, Meta metaData, Double capacity) {
+		super();
+		this.stateName = stateName;
+		this.metaData = metaData;
+		this.capacity = capacity;
+	}
 
 }
