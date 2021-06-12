@@ -7,8 +7,6 @@ import com.zerohunger.pdsmanagement.domain.OrderGrant;
 
 @Repository
 public interface OrderGrantRepository extends ReactiveMongoRepository<OrderGrant, String> {
-
-
 	
 	
 }
