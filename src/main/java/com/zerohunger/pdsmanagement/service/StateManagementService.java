@@ -17,13 +17,13 @@ import reactor.core.publisher.Mono;
 public class StateManagementService {
 
 	@Autowired
-	StateRepository stateRepo;
+	private StateRepository stateRepo;
 	
 	@Autowired
-	OrderRequestRepository orderRequestRepo;
+	private OrderRequestRepository orderRequestRepo;
 	
 	@Autowired
-	OrderGrantRepository orderGrantRepo;
+	private OrderGrantRepository orderGrantRepo;
 	
 	public Mono<StateAvailability> getRationAvailability(){
 		return null;
