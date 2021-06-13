@@ -8,13 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.zerohunger.pdsmanagement.constants.OrderRequestStatus;
 import com.zerohunger.pdsmanagement.domain.Availability;
-import com.zerohunger.pdsmanagement.domain.Meta;
-import com.zerohunger.pdsmanagement.domain.StateAvailability;
+import com.zerohunger.pdsmanagement.domain.RequestStatus;
 import com.zerohunger.pdsmanagement.repository.MetaRepository;
 import com.zerohunger.pdsmanagement.repository.OrderGrantRepository;
 import com.zerohunger.pdsmanagement.repository.OrderRequestRepository;
 import com.zerohunger.pdsmanagement.repository.RawMaterialRepository;
+import com.zerohunger.pdsmanagement.repository.RequestStatusRepository;
 import com.zerohunger.pdsmanagement.repository.StateAvailabilityRepository;
 import com.zerohunger.pdsmanagement.repository.StateRepository;
 
@@ -40,7 +41,7 @@ public class PdsmanagementLocalApplication implements CommandLineRunner {
 	private StateAvailabilityRepository stateAvailabilityRepository;
 
 	@Autowired
-	private OrderRequestRepository orderRequestrRepository;
+	private RequestStatusRepository requestStatusRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PdsmanagementLocalApplication.class, args);
@@ -50,10 +51,11 @@ public class PdsmanagementLocalApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		//Meta metaData = new Meta("Gaurav Swain", "gswain3316@gmail.com");
 		List<Availability> availabilityList = new ArrayList<>();
-		availabilityList.add(new Availability("60c4d1bb5e55143acc400612", 4356.30));
-		availabilityList.add(new Availability("60c4d1bb5e55143acc400613", 2389.67));
-		availabilityList.add(new Availability("60c4d1bb5e55143acc400614", 7490.67));
-		availabilityList.add(new Availability("60c4d1bb5e55143acc400615", 4528.67));
+		availabilityList.add(new Availability("Rice", 4356.30));
+		availabilityList.add(new Availability("Wheat", 2389.67));
+		availabilityList.add(new Availability("Sugar", 7490.67));
+		availabilityList.add(new Availability("Coarse Grain", 4528.67));
+		requestStatusRepo.save(new RequestStatus("60c5e45dc533f47b9f9742ea", OrderRequestStatus.PENDING, 0.00));
 		//metaRepository.save(metaData);
 		// stateRepository.save(new State("Madhya ", metaData, 256789.89));
 		// materialRepository.save(new RawMaterial(RationItem.RICE));

@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
+import com.zerohunger.pdsmanagement.domain.RequestStatus;
 import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
 import com.zerohunger.pdsmanagement.repository.OrderGrantRepository;
 import com.zerohunger.pdsmanagement.repository.OrderRequestRepository;
+import com.zerohunger.pdsmanagement.repository.RequestStatusRepository;
 import com.zerohunger.pdsmanagement.repository.StateAvailabilityRepository;
 import com.zerohunger.pdsmanagement.repository.StateRepository;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
@@ -36,6 +38,9 @@ public class StateManagementServiceImpl implements StateManagementService {
 
 	@Autowired
 	private StateAvailabilityRepository stateAvailabilityRepo;
+	
+	@Autowired
+	private RequestStatusRepository requestStatusRepo;
 
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) {
@@ -61,6 +66,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 
 	@Override
 	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) {
+		log.info("Grant Order Service Started !");
 		Date date = new Date();
 		OrderGrant orderGrantFinal = new OrderGrant(orderGrant.getGrantingStateName(), orderGrant.getRequestId(),
 				orderGrant.getQuantityGranted(), date, date);
@@ -71,5 +77,11 @@ public class StateManagementServiceImpl implements StateManagementService {
 			orderRequestRepo.save(orderChange);
 		}
 		return Mono.just(grantOrderRes.get());
+	}
+
+	@Override
+	public Mono<RequestStatus> getOrderStatus(String requestId) {
+		log.info("Get Order Status Service Started !");
+		return Mono.just(requestStatusRepo.findOneByRequestId(requestId));
 	}
 }
