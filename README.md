@@ -24,7 +24,7 @@ Our project is based on the theme of Zero Hunger problem and is intended for the
   - [License](#license)
 
 ## Short description
-Our project focuses on the problem of managing food & supplies across all the states/districts of the country. We came up with a model to minimize the human effort as much as possible so as to easily manage rations/supplies across multiple states by distribution through our application.
+Our project focuses on the problem of managing food & supplies across all the states/districts of the country. We came up with a model to minimize the human effort as much as possible so as to easily manage rations/supplies across multiple states by distribution through our API application.
 
 ### What's the problem?
 
