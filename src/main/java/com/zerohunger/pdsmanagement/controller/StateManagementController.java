@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
+import com.zerohunger.pdsmanagement.domain.RequestStatus;
 import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
@@ -100,6 +101,23 @@ public class StateManagementController {
 		} else
 			return Mono.just(new ResponseEntity<>(new OrderGrant(), HttpStatus.BAD_REQUEST));
 
+	}
+	
+	@GetMapping("/order-status")
+	@Operation(description = "To Get Status of a Order Request for Ration by a State")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Success"),
+			@ApiResponse(responseCode = "404", description = "No Response Found"),
+			@ApiResponse(responseCode = "400", description = "Bad Request"),
+			@ApiResponse(responseCode = "500", description = "Internal Server Error")
+	})
+	public Mono<ResponseEntity<RequestStatus>> getOrderStatus(@RequestParam String requestId){
+		if (requestId != null) {
+			return stateManagementService.getOrderStatus(requestId)
+					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
+					.defaultIfEmpty(ResponseEntity.notFound().build());
+		} else
+			return Mono.just(new ResponseEntity<>(new RequestStatus(), HttpStatus.BAD_REQUEST));
 	}
 	
 	@GetMapping

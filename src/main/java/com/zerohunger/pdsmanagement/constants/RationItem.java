@@ -2,7 +2,7 @@ package com.zerohunger.pdsmanagement.constants;
 
 public enum RationItem {
 
-	RICE("Rice"), WHEAT("Wheat"), SUGAR("Sugar"), COARSE_GRAIN("CoarseGrain");
+	Rice("Rice"), Wheat("Wheat"), Sugar("Sugar"), CoarseGrain("Coarse Grain");
 
 	private final String rationItem;
 

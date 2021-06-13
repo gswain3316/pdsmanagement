@@ -8,4 +8,6 @@ import com.zerohunger.pdsmanagement.domain.RequestStatus;
 @Repository
 public interface RequestStatusRepository extends MongoRepository<RequestStatus, String> {
 
+	RequestStatus findOneByRequestId(final String requestId);
+	
 }
