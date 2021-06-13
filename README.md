@@ -108,6 +108,14 @@ You can find a running system to test at [callforcode.mybluemix.net](http://call
 - [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 - [Maven](https://maven.apache.org/) - Dependency management
 - [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+- [Spring Boot 2.4.4](https://spring.io/projects/spring-boot)
+- [Swagger 3.0.3](https://swagger.io/)
+- [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
+- [Spring Data JPA 2.4](https://spring.io/projects/spring-data-jpa)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- [Docker 19.0.3](https://docs.docker.com/)
+- [Kubernetes 1.2.0](https://kubernetes.io/)
+
 
 ## Contributing
 
@@ -119,7 +127,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 - **Ayush Gupta** - [ayushgupta11](https://github.com/ayushgupta11)
 - **Gaurav Swain** - [gswain3316](https://github.com/gswain3316)
 - **Kajal Rawal** - [Kajal Rawal](https://github.com/kajalrawal)
-- **Ravi** - [gswain3316](https://github.com/gswain3316)
+- **Ravi Prakash** - [ravii-1996](https://github.com/ravii-1996)
 
 ## License
 
