@@ -1,11 +1,13 @@
 package com.zerohunger.pdsmanagement.service.impl;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zerohunger.pdsmanagement.constants.UpdateRation;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
@@ -74,6 +76,10 @@ public class StateManagementServiceImpl implements StateManagementService {
 		if (grantOrderRes.isPresent()) {
 			OrderRequest orderChange = orderRequestRepo.findById(orderGrant.getRequestId()).get();
 			orderChange.setIsActive(false);
+			
+			Optional<Object> updatedStateAvailability = Optional.ofNullable(updateRation(orderGrant.getRequestId(),orderGrant.getGrantingStateName(), orderGrant.getQuantityGranted(),UpdateRation.STATE_AVAILABILITY ));
+			Optional<Object> updatedOrderRequest = Optional.ofNullable(updateRation(orderGrant.getRequestId(), orderGrant.getGrantingStateName(), orderGrant.getQuantityGranted(),UpdateRation.REQUEST_STATUS));
+			
 			orderRequestRepo.save(orderChange);
 		}
 		return Mono.just(grantOrderRes.get());
@@ -83,5 +89,33 @@ public class StateManagementServiceImpl implements StateManagementService {
 	public Mono<RequestStatus> getOrderStatus(String requestId) {
 		log.info("Get Order Status Service Started !");
 		return Mono.just(requestStatusRepo.findOneByRequestId(requestId));
+	}
+
+	
+	public Object updateRation(String requestId, String stateName, Double quantityGranted, UpdateRation objectType) {
+		
+		Object object = null;
+		switch(objectType) {
+	      case REQUEST_STATUS:
+	    	  RequestStatus requestStatus =requestStatusRepo.findOneByRequestId(requestId);
+	    	  if(!Objects.isNull(requestStatus)){
+	    		  requestStatus.setQuantityFulfilled(requestStatus.getQuantityFulfilled()-quantityGranted);
+	    		  object= requestStatusRepo.save(requestStatus);
+	    	  }
+	        break;
+	      case STATE_AVAILABILITY:
+	    	  StateAvailability stateAvailability =stateAvailabilityRepo.findOneByStateName(stateName);
+	    	  if(!Objects.isNull(stateAvailability)){
+	    		  
+	    		  stateAvailability.getAvailability().forEach(a -> {
+	    			  if(a.getRawMaterialName()=="Rice") {
+	    				  a.setAvailableQuantity(a.getAvailableQuantity()+quantityGranted);
+	    			  }
+	    		  });
+	    		  object= stateAvailabilityRepo.save(stateAvailability);
+	    	  }
+	         break;
+	    }
+		return object;
 	}
 }
