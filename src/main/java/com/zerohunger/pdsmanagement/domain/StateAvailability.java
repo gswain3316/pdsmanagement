@@ -6,18 +6,20 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Document(collection = "StateAvailability")
+@NoArgsConstructor
 public class StateAvailability {
 
 	@Id
 	private String id;
-	private String stateId;
+	private String stateName;
 	private List<Availability> availability;
-	public StateAvailability(String stateId, List<Availability> availability) {
+	public StateAvailability(String stateName, List<Availability> availability) {
 		super();
-		this.stateId = stateId;
+		this.stateName = stateName;
 		this.availability = availability;
 	}
 	

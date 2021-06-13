@@ -8,25 +8,28 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Document(collection = "OrderGrant")
+@NoArgsConstructor
 public class OrderGrant {
 
 	@Id
 	private String id;
-	private String grantingStateId;
+	private String grantingStateName;
 	private String requestId;
 	private Double quantity;
 	
-	@CreatedDate
+	//@CreatedDate
 	private Date createdOn;
 	
-	@LastModifiedDate 
+	//@LastModifiedDate 
 	private Date modifiedOn;
-	public OrderGrant(String grantingStateId, String requestId, Double quantity, Date createdOn, Date modifiedOn) {
+	
+	public OrderGrant(String grantingStateName, String requestId, Double quantity, Date createdOn, Date modifiedOn) {
 		super();
-		this.grantingStateId = grantingStateId;
+		this.grantingStateName = grantingStateName;
 		this.requestId = requestId;
 		this.quantity = quantity;
 		this.createdOn = createdOn;
