@@ -13,7 +13,7 @@ Our project is based on the theme of Zero Hunger problem and is intended for the
     - [What's the problem?](#whats-the-problem)
     - [How can technology help?](#how-can-technology-help)
     - [The idea](#the-idea)
-  - [The architecture](#the-architecture)
+  - [Schema](#schema)
   - [Long description](#long-description)
   - [Project roadmap](#project-roadmap)
   - [Getting started](#getting-started)
@@ -38,21 +38,7 @@ By bringing the paper ledgers of food co-ops online, communities can harness dat
 
 To improve access to nutritious food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
 
-## The architecture
-
-1. The user uses their non-smartphone device camera to capture a photo of their product yield for quality testing and analysis.
-2. The user sends a camera image and/or a text message through their non-smartphone device MMS/SMS service.
-3. The image and/or message is redirected to the Twilio Programmable Messaging service or to the Telstra Programmable Messaging service for users located in Australia.
-4. The Twilio Programmable Messaging service or Telstra Programmable Messaging service will forward the message to the Node-RED app hosted on IBM Cloud.
-5. The Node-RED app interacts with the IBM Cloud Pak for Data AI/ML service to get the response.
-6. IBM Cloud Object Storage is provisioned to receive the images and/or message data.
-7. The image and/or message data is added to the available IBM Cloud Object Storage.
-8. The IBM Cloud Pak for Data AI/ML service does the necessary computations and returns a response.
-9. The Node-RED app processes the response, converts it to a user-readable format, and forwards it to the digital co-operative management system app UI (Optional: to Twilio or Telstra).
-10. The response is received by the digital co-operative management system app UI.
-11. The co-op admin is able to view the response via the digital co-operative management system app UI.
-12. (Optional: The Twilio or Telstra Programmable Messaging service forwards the response as a reply message to the User through their messaging APIs.)
-13. (Optional: The user receives the reply message as a response from the IBM Cloud Pak for Data AI/ML service through their non-smartphone device MMS/SMS service.)
+## Schema
 
 Please follow the link for the schema design for our project: [Click Here](https://gist.github.com/ayushgupta11/9b76468646249c01fc4f35d6a1ce4703)
 
@@ -66,10 +52,11 @@ The project currently does the following things.
 
 Below is the project roadmap implemented till now:
 1. Epic 1- State Endpoint 
-- Availability of rice, wheat, coarse grain, sugar endpoint 
-- Capacity of state endpoint 
-- Request for rice, wheat, coarse grains, sugar endpoint 
-- Granting/ place order note for other states to accept request for rice, wheat, coarse grain, sugar
+- Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
+- Endpoint 2 : Capacity of state endpoint 
+- Endpoint 3 : Request for rice, wheat, coarse grains, sugar endpoint 
+- Endpoint 4 : Granting/ place order note for other states to accept request for rice, wheat, coarse grain, sugar
+- Endpoint 5 : Order status endpoint for showing the current status of the order placed by the state
 
 See below for our proposed schedule on next steps after Call for Code 2021 submission.
 
@@ -78,6 +65,7 @@ See below for our proposed schedule on next steps after Call for Code 2021 submi
 - Capacity of district endpoint 
 - Request for rice, wheat, coarse grains, sugar endpoint 
 - Granting/ place order note for other states to accept request for rice, wheat, coarse grain, sugar
+- Order status endpoint for showing the current status of the order placed by the district
 
 2. Epic 3- FPS/TPDS Endpoint 
 - Availability of rice, wheat, coarse grain, sugar endpoint 
@@ -91,10 +79,10 @@ See below for our proposed schedule on next steps after Call for Code 2021 submi
 ## Getting started
 
 In this section you add the instructions to run your project on your local machine for development and testing purposes. You can also add instructions on how to deploy the project in production.
-
-- [sample-react-app](./sample-react-app/)
-- [sample-angular-app](./sample-angular-app/)
-- [Explore other projects](https://github.com/upkarlidder/ibmhacks)
+1. Import the project as a maven project
+2. Run the project as spring boot application
+3. Swagger will be available at `http://localhost:8181/swagger-ui.html`
+4. Refer to endpoints in swagger. You can directly run endpoints in swagger or from tools like postman, etc.
 
 ## Live demo
 
@@ -102,22 +90,13 @@ You can find a running system to test at [callforcode.mybluemix.net](http://call
 
 ## Built with
 
-- [IBM Cloudant](https://cloud.ibm.com/catalog?search=cloudant#search_results) - The NoSQL database used
-- [IBM Cloud Functions](https://cloud.ibm.com/catalog?search=cloud%20functions#search_results) - The compute platform for handing logic
-- [IBM API Connect](https://cloud.ibm.com/catalog?search=api%20connect#search_results) - The web framework used
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Maven](https://maven.apache.org/) - Dependency management
-- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Technology and Framework
-
 - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot) - Rest API developed on springboot framework.
 - [Swagger 3.0.3](https://swagger.io/) - Rest API documentation and design tool
-- [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - Reactive-stack web framework
-- [Spring Data JPA 2.4](https://spring.io/projects/spring-data-jpa) - Help us to accessing, persisting, and managing data between Java objects / classes.
+- [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - Reactive-stack web framework.
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - NoSql Cloud database
 - [Docker 19.0.3](https://docs.docker.com/) - Help to build, manage, and deploy containerized applications
 - [Kubernetes 1.2.0](https://kubernetes.io/) - Help to automating deployment, scaling, and management of containerized applications.
+- [Maven](https://maven.apache.org/) - Dependency management
 
 
 ## Contributing
@@ -126,7 +105,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Authors
 
-- **Ankit Kumar** - [PurpleBooth](https://github.com/PurpleBooth)
+- **Ankit Kumar** - [itank-z](https://github.com/itank-z)
 - **Ayush Gupta** - [ayushgupta11](https://github.com/ayushgupta11)
 - **Gaurav Swain** - [gswain3316](https://github.com/gswain3316)
 - **Kajal Rawal** - [Kajal Rawal](https://github.com/kajalrawal)
