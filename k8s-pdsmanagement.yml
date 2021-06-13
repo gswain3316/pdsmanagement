@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-pdsmanagement-deployment
+  labels:
+    app: k8s-pdsmanagement
+spec:
+  selector:
+    matchLabels:
+      app: k8s-pdsmanagement
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8s-pdsmanagement
+    spec:
+      containers:
+        - name: k8s-pdsmanagement
+          image: kajalrawal/pdsmanagement
+          ports:
+            - containerPort: 8181
