@@ -18,9 +18,11 @@ import com.zerohunger.pdsmanagement.repository.StateAvailabilityRepository;
 import com.zerohunger.pdsmanagement.repository.StateRepository;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
 
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Service
+@Slf4j
 public class StateManagementServiceImpl implements StateManagementService {
 
 	@Autowired
@@ -37,6 +39,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) {
+		log.info("Ration Availability Service Started !");
 		return Mono.just(stateAvailabilityRepo.findOneByStateName(stateName));
 	}
 
