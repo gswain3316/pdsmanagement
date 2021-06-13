@@ -65,7 +65,7 @@ public class StateManagementController {
 			return Mono.just(new ResponseEntity<>(new State(), HttpStatus.BAD_REQUEST));
 	}
 
-	@GetMapping("/ration-request")
+	@PostMapping("/ration-request")
 	@Operation(description = "Publish/Post a Ration Request for a particular State")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Success"),
@@ -75,6 +75,7 @@ public class StateManagementController {
 	})
 	public Mono<ResponseEntity<OrderRequest>> requestforRation(@RequestBody OrderRequestService orderRequest) {
 		if (orderRequest != null) {
+			log.info("Request for Ration Controller Hit !");
 			return stateManagementService.requestforRation(orderRequest)
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
