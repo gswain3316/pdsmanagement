@@ -108,13 +108,16 @@ You can find a running system to test at [callforcode.mybluemix.net](http://call
 - [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 - [Maven](https://maven.apache.org/) - Dependency management
 - [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-- [Spring Boot 2.4.4](https://spring.io/projects/spring-boot)
-- [Swagger 3.0.3](https://swagger.io/)
-- [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
-- [Spring Data JPA 2.4](https://spring.io/projects/spring-data-jpa)
-- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-- [Docker 19.0.3](https://docs.docker.com/)
-- [Kubernetes 1.2.0](https://kubernetes.io/)
+
+## Technology and Framework
+
+- [Spring Boot 2.4.4](https://spring.io/projects/spring-boot) - Rest API developed on springboot framework.
+- [Swagger 3.0.3](https://swagger.io/) - Rest API documentation and design tool
+- [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - Reactive-stack web framework
+- [Spring Data JPA 2.4](https://spring.io/projects/spring-data-jpa) - Help us to accessing, persisting, and managing data between Java objects / classes.
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - NoSql Cloud database
+- [Docker 19.0.3](https://docs.docker.com/) - Help to build, manage, and deploy containerized applications
+- [Kubernetes 1.2.0](https://kubernetes.io/) - Help to automating deployment, scaling, and management of containerized applications.
 
 
 ## Contributing
