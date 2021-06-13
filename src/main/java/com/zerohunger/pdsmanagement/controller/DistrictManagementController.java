@@ -1,5 +1,5 @@
 package com.zerohunger.pdsmanagement.controller;
 
-public class EndUserManagement {
+public class DistrictManagementController {
 
 }
