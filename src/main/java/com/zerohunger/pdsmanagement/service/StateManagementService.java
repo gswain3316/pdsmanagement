@@ -2,6 +2,7 @@ package com.zerohunger.pdsmanagement.service;
 
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
+import com.zerohunger.pdsmanagement.domain.RequestStatus;
 import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
@@ -15,5 +16,6 @@ public interface StateManagementService {
 	public Mono<State> getStateCapacity(String stateId);
 	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest);
 	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant);
+	public Mono<RequestStatus> getOrderStatus(String requestId);
 	
 }
