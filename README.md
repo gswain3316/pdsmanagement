@@ -61,20 +61,21 @@ Below is the project roadmap implemented till now:
 See below for our proposed schedule on next steps after Call for Code 2021 submission.
 
 1. Epic 2- District Endpoint 
-- Availability of rice, wheat, coarse grain, sugar endpoint 
-- Capacity of district endpoint 
-- Request for rice, wheat, coarse grains, sugar endpoint 
-- Granting/ place order note for other states to accept request for rice, wheat, coarse grain, sugar
-- Order status endpoint for showing the current status of the order placed by the district
+- Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
+- Endpoint 2 : Capacity of district endpoint 
+- Endpoint 3 : Request for rice, wheat, coarse grains, sugar endpoint 
+- Endpoint 4 : Granting/ place order note for other districts to accept request for rice, wheat, coarse grain, sugar
+- Endpoint 5 : Order status endpoint for showing the current status of the order placed by the district
 
 2. Epic 3- FPS/TPDS Endpoint 
-- Availability of rice, wheat, coarse grain, sugar endpoint 
-- Capacity of FPS/TPDS other 2 endpoints not needed as the Disctrict administration and state govt has purchasing power
+- Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
+- Endpoint 2 : Capacity of FPS/TPDS 
+- other 2 endpoints not needed as the Disctrict administration and State Govt has purchasing power
 
 3. Epic 4- Ration card holder/ BPL Endpoint 
-- Register for ration card endpoint 
-- Available quota for ration for the month endpoint 
-- Acceptance of ration by PDS
+- Endpoint 1 : Register for ration card endpoint 
+- Endpoint 2 : Available quota for ration for the month endpoint 
+- Endpoint 3 : Acceptance of ration by PDS
 
 ## Getting started
 
