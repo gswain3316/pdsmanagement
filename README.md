@@ -86,7 +86,7 @@ In this section you add the instructions to run your project on your local machi
 
 ## Live demo
 
-You can find a running system to test at [callforcode.mybluemix.net](http://callforcode.mybluemix.net/).
+You can find a running system to test at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
 
 ## Built with
 
