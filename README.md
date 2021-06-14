@@ -26,17 +26,22 @@ Our project is based on the theme of Zero Hunger problem and is intended for the
 ## Short description
 Our project focuses on the problem of managing food & supplies across all the states/districts of the country. We came up with a model to minimize the human effort as much as possible so as to easily manage rations/supplies across multiple states by distribution through our API application.
 
+## Long description
+Due to scarcity or unavailability of resources, and due to more demand for them, the prices of the resources/ration becomes unmanageable.
+So we have worked on a solution to ensure that basic ration like rice, wheat, sugar, coarse grain remains available in abundant with all States, Districts, FCI units.
+The solution works just like CoWin portal/ API app which is able to solve vaccination logistics issue very smoothly across the nation.
+
 ### What's the problem?
 
 Approximately 9 percent of the global population is suffering from hunger. And, much of the world’s food is grown by small-scale, independent farms and distributed through local community cooperatives who sell the surplus produce. The co-ops are a central point for quality control, deliveries, and enabling food commodity markets. However, these co-ops face a myriad of logistical challenges to get the right food to the right places with minimal time and cost.
 
 ### How can technology help?
 
-By bringing the paper ledgers of food co-ops online, communities can harness data insights from their environment for better crop resilience and overall yield for sustainable food production systems. More crops mean better access to food for the community.
+By bringing the paper ledgers of food co-ops online, communities can harness data insights from their distribution systems like Fair Price Shops, Target Public Distribution Systems, Food Corporation Of India godowns, and other various Food storage units, to provide ration at least or Zero price to the persons in need. Also it will help States/ Districts at time of disaster or any emergency when they require ration immediately to serve the local people in need. 
 
 ### The idea
 
-To improve access to nutritious food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
+To improve access to basic ration/food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
 
 ## Schema
 
@@ -51,7 +56,7 @@ The project currently does the following things.
 - Able to grant request to a specific state which has enough crop available to be supplied to another state.
 
 Below is the project roadmap implemented till now:
-1. Epic 1- State Endpoint 
+Epic 1- State Endpoint 
 - Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
 - Endpoint 2 : Capacity of state endpoint 
 - Endpoint 3 : Request for rice, wheat, coarse grains, sugar endpoint 
@@ -60,22 +65,24 @@ Below is the project roadmap implemented till now:
 
 See below for our proposed schedule on next steps after Call for Code 2021 submission.
 
-1. Epic 2- District Endpoint 
+Epic 2- District Endpoint 
 - Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
 - Endpoint 2 : Capacity of district endpoint 
 - Endpoint 3 : Request for rice, wheat, coarse grains, sugar endpoint 
 - Endpoint 4 : Granting/ place order note for other districts to accept request for rice, wheat, coarse grain, sugar
 - Endpoint 5 : Order status endpoint for showing the current status of the order placed by the district
 
-2. Epic 3- FPS/TPDS Endpoint 
+Epic 3- FPS/TPDS Endpoint 
 - Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
 - Endpoint 2 : Capacity of FPS/TPDS 
-- other 2 endpoints not needed as the Disctrict administration and State Govt has purchasing power
+- other 2 endpoints not needed as the Disctrict Administration and State Govt has purchasing power
 
-3. Epic 4- Ration card holder/ BPL Endpoint 
+Epic 4- Ration card holder/ BPL Endpoint 
 - Endpoint 1 : Register for ration card endpoint 
 - Endpoint 2 : Available quota for ration for the month endpoint 
 - Endpoint 3 : Acceptance of ration by PDS
+
+Epic 5 - Applying AI / ML to the vast datasets and predicting future requirements as well in advance.
 
 ## Getting started
 
