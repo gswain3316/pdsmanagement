@@ -12,7 +12,7 @@
 	<groupId>com.zerohunger</groupId>
 	<artifactId>pdsmanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pdsmanagement_local</name>
+	<name>pdsmanagement</name>
 	<description>API application for management of FPS/TPDS and FCI food stocks</description>
 	<properties>
 		<java.version>11</java.version>
