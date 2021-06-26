@@ -129,7 +129,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
 	public String welcome() {
-		return "PDS App is runnning fine !";
+		return "PDS App State Version is runnning fine !";
 	}
 
 }
