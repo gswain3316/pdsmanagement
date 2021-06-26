@@ -1,1 +1,1 @@
-web: java -Dserver.port=8181 $JAVA_OPTS -jar target/pdsmanagement-app.jar
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/pdsmanagement-app.jar
