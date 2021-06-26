@@ -94,7 +94,8 @@ In this section you add the instructions to run your project on your local machi
 
 ## Live demo
 
-You can find a running system to test at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
+You can find a live running system to test at [https://pdsmanagement.herokuapp.com/](PDS Management App)[https://pdsmanagement.herokuapp.com/swagger-ui.html](PDS Management App Swagger URL)
+You can find the docker image of the running system at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
 
 ## Built with
 
