@@ -17,6 +17,7 @@ import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
+import com.zerohunger.pdsmanagement.exception.OrderGrantSaveError;
 import com.zerohunger.pdsmanagement.exception.OrderRequestSaveError;
 import com.zerohunger.pdsmanagement.exception.RequestStatusNotFoundException;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
@@ -94,7 +95,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<OrderGrant>> grantOrderNote(@RequestBody OrderGrantService grantOrder) {
+	public Mono<ResponseEntity<OrderGrant>> grantOrderNote(@RequestBody OrderGrantService grantOrder) throws OrderGrantSaveError {
 
 		if (grantOrder != null) {
 			return stateManagementService.grantOrderNote(grantOrder)
