@@ -83,13 +83,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 				orderGrant.getQuantityGranted(), date, date);
 		Optional<OrderGrant> grantOrderRes = Optional.ofNullable(orderGrantRepo.save(orderGrantFinal));
 		if (grantOrderRes.isPresent()) {
-			OrderRequest orderChange = orderRequestRepo.findById(orderGrant.getRequestId()).get();
-			orderChange.setIsActive(false);
-			orderRequestRepo.save(orderChange);
-			Optional<RequestStatus> dbRes = requestStatusRepo.findOneByRequestId(grantOrderRes.get().getRequestId());
-			dbRes.get().setStatus(OrderRequestStatus.ACCEPTED_BY_STATE);
-			dbRes.get().setQuantityFulfilled(grantOrderRes.get().getQuantity());
-			requestStatusRepo.save(dbRes.get());
+			updateOrderRequestAndRequestStatusOnGrantOrderNote(grantOrderRes.get());
 			return Mono.just(grantOrderRes.get());
 		}
 		else
@@ -105,5 +99,22 @@ public class StateManagementServiceImpl implements StateManagementService {
 			return Mono.just(dbRes.get());
 		else
 			throw new RequestStatusNotFoundException(requestId+" is not found in our database records!");
+	}
+	
+	private void updateOrderRequestAndRequestStatusOnGrantOrderNote(OrderGrant orderGrant) {
+		OrderRequest orderRequest = orderRequestRepo.findById(orderGrant.getRequestId()).get();
+		RequestStatus requestStatus = requestStatusRepo.findOneByRequestId(orderGrant.getRequestId()).get();
+		if(orderRequest.getQuantity().equals(orderGrant.getQuantity())) {
+			orderRequest.setIsActive(false);
+			requestStatus.setStatus(OrderRequestStatus.FULLFILLED);
+		}
+		else 
+			requestStatus.setStatus(OrderRequestStatus.ACCEPTED_BY_STATE);
+		Double remainingQuantity = orderRequest.getQuantity() - orderGrant.getQuantity();
+		orderRequest.setQuantity(remainingQuantity);
+		requestStatus.setQuantityFulfilled(orderGrant.getQuantity());
+		orderRequestRepo.save(orderRequest);
+		requestStatusRepo.save(requestStatus);	
+		
 	}
 }
