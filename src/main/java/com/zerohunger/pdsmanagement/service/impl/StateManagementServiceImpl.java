@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zerohunger.pdsmanagement.constants.OrderRequestStatus;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
@@ -13,6 +14,8 @@ import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
+import com.zerohunger.pdsmanagement.exception.OrderRequestSaveError;
+import com.zerohunger.pdsmanagement.exception.RequestStatusNotFoundException;
 import com.zerohunger.pdsmanagement.repository.OrderGrantRepository;
 import com.zerohunger.pdsmanagement.repository.OrderRequestRepository;
 import com.zerohunger.pdsmanagement.repository.RequestStatusRepository;
@@ -54,13 +57,19 @@ public class StateManagementServiceImpl implements StateManagementService {
 	}
 
 	@Override
-	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) {
+	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws OrderRequestSaveError {
 		log.info("Request for Ration Service Started !");
 		Date date = new Date();
 		OrderRequest orderRequestFinal = new OrderRequest(orderRequest.getRequestingStateName(),
 				orderRequest.getRawMaterialName(), orderRequest.getQuantity(), orderRequest.getUnits(), true, date,
 				date);
-		return Mono.just(orderRequestRepo.save(orderRequestFinal));
+		Optional<OrderRequest> dbRes = Optional.ofNullable(orderRequestRepo.save(orderRequestFinal));
+		if(dbRes.isPresent()) {
+			requestStatusRepo.save(new RequestStatus(dbRes.get().getId(), OrderRequestStatus.PENDING, 0.0));
+			return Mono.just(dbRes.get());
+		}
+		else
+			throw new OrderRequestSaveError("Invalid Request is Sent ! Please send Valid Request !");
 
 	}
 
@@ -80,8 +89,12 @@ public class StateManagementServiceImpl implements StateManagementService {
 	}
 
 	@Override
-	public Mono<RequestStatus> getOrderStatus(String requestId) {
+	public Mono<RequestStatus> getOrderStatus(String requestId) throws RequestStatusNotFoundException {
 		log.info("Get Order Status Service Started !");
-		return Mono.just(requestStatusRepo.findOneByRequestId(requestId));
+		Optional<RequestStatus> dbRes = requestStatusRepo.findOneByRequestId(requestId);
+		if(dbRes.isPresent())
+			return Mono.just(dbRes.get());
+		else
+			throw new RequestStatusNotFoundException(requestId+" is not found in our database records!");
 	}
 }
