@@ -89,12 +89,12 @@ Epic 5 - Applying AI / ML to the vast datasets and predicting future requirement
 In this section you add the instructions to run your project on your local machine for development and testing purposes. You can also add instructions on how to deploy the project in production.
 1. Import the project as a maven project
 2. Run the project as spring boot application
-3. Swagger will be available at `http://localhost:8181/swagger-ui.html`
+3. Swagger will be available at `http://localhost:8181/swagger-ui/`
 4. Refer to endpoints in swagger. You can directly run endpoints in swagger or from tools like postman, etc.
 
 ## Live demo
 
- - You can find a live running system to test at [https://pdsmanagement.herokuapp.com/] (PDS Management App) & [https://pdsmanagement.herokuapp.com/swagger-ui.html] (PDS Management App Swagger URL).
+ - You can find a live running system to test at [https://pdsmanagement.herokuapp.com/] (PDS Management App) & [https://pdsmanagement.herokuapp.com/swagger-ui/] (PDS Management App Swagger URL).
  - You can find the docker image of the running system at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
 
 ## Built with
