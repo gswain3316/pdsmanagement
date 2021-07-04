@@ -43,11 +43,24 @@ By bringing the paper ledgers of food co-ops online, communities can harness dat
 
 To improve access to basic ration/food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
 
+## The architecture
+
+![Video transcription/translation app](https://github.com/gswain3316/pdsmanagement/blob/main/Architecture.png?raw=true)
+
+1. The user navigates to the PDSMangement App dashboard or UI.
+2. The user can then check the Availability of the Ration(wheat/rice/coarse grain/sugar) for the particular State/District.
+3. The user can use the UI or Swagger UI to place Order Requests or Grant Orders for the Ration.
+4. The app processes all the requests instantly in real-time and generates an order statement or order note for reference.
+5. User can create their Ration Card online and get it deliverd to PDS, also user can check on their Available Quota for Ration.
+6. The app will analyze all the data(Requests/Grants) transactions and create a Graph representation and can predict the future requirements as well.
+
 ## Schema
 
 Please follow the link for the schema design for our project: [Click Here](https://gist.github.com/ayushgupta11/9b76468646249c01fc4f35d6a1ce4703)
 
 ## Project roadmap
+
+![Video transcription/translation app](https://github.com/gswain3316/pdsmanagement/blob/main/ProductRoadMap.png?raw=true)
 
 The project currently does the following things.
 
