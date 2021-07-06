@@ -30,7 +30,7 @@ public class RequestStatus {
 		this.requestId = requestId;
 		this.status = status;
 		this.quantityFulfilled = quantityFulfilled;
-		this.quantityRemaining = quantityFulfilled;
+		this.quantityRemaining = quantityRemaining;
 	}
 	
 }
