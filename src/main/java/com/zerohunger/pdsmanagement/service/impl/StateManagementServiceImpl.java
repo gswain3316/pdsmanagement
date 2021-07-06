@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.zerohunger.pdsmanagement.constants.OrderRequestStatus;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
@@ -47,10 +48,13 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Autowired
 	private RequestStatusRepository requestStatusRepo;
 
+	private static String StateInCamelCase = "";
+
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
-		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(stateName));
+		StateInCamelCase = StringUtils.capitalize(stateName);
+		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
 		if(availableState.isPresent()){
 			log.info("Ration Availability Service Completed !");
 			return Mono.just(availableState.get());
@@ -63,7 +67,8 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<State> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
-		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(stateName));
+		StateInCamelCase = StringUtils.capitalize(stateName);
+		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
 		if(stateCapacity.isPresent()){
 			log.info("State Capacity Service Completed !");
 			return Mono.just(stateCapacity.get());
