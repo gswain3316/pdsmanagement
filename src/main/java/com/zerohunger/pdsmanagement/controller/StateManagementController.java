@@ -17,9 +17,6 @@ import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
-import com.zerohunger.pdsmanagement.exception.OrderGrantSaveError;
-import com.zerohunger.pdsmanagement.exception.OrderRequestSaveError;
-import com.zerohunger.pdsmanagement.exception.RequestStatusNotFoundException;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -77,7 +74,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<OrderRequest>> requestforRation(@RequestBody OrderRequestService orderRequest) throws OrderRequestSaveError {
+	public Mono<ResponseEntity<OrderRequest>> requestforRation(@RequestBody OrderRequestService orderRequest) {
 		if (orderRequest != null) {
 			log.info("Request for Ration Controller Hit !");
 			return stateManagementService.requestforRation(orderRequest)
@@ -95,7 +92,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<OrderGrant>> grantOrderNote(@RequestBody OrderGrantService grantOrder) throws OrderGrantSaveError {
+	public Mono<ResponseEntity<OrderGrant>> grantOrderNote(@RequestBody OrderGrantService grantOrder) {
 
 		if (grantOrder != null) {
 			return stateManagementService.grantOrderNote(grantOrder)
@@ -114,7 +111,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<RequestStatus>> getOrderStatus(@RequestParam String requestId) throws RequestStatusNotFoundException{
+	public Mono<ResponseEntity<RequestStatus>> getOrderStatus(@RequestParam String requestId) {
 		if (requestId != null) {
 			return stateManagementService.getOrderStatus(requestId)
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
