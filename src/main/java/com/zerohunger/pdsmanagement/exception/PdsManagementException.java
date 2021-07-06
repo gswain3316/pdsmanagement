@@ -9,36 +9,36 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class PdsManagementException {
 
-	@ExceptionHandler(value = RequestStatusNotFoundException.class)
-	public ResponseEntity<ErrorMsg> requestStatusError(RequestStatusNotFoundException ex){
+	@ExceptionHandler(value = EntityNotFoundException.class)
+	public ResponseEntity<ErrorMsg> requestStatusError(EntityNotFoundException ex) {
 		ErrorMsg msg = new ErrorMsg();
 		msg.setErrorCode(404);
 		msg.setErrorMsg(ex.getMessage());
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg) ;
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(msg);
 	}
-	
+
 	@ExceptionHandler(value = OrderRequestSaveError.class)
-	public ResponseEntity<ErrorMsg> orderRequestSaveError(OrderRequestSaveError ex){
+	public ResponseEntity<ErrorMsg> orderRequestSaveError(OrderRequestSaveError ex) {
 		ErrorMsg msg = new ErrorMsg();
 		msg.setErrorCode(400);
 		msg.setErrorMsg(ex.getMessage());
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg) ;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
 	}
-	
+
 	@ExceptionHandler(value = OrderGrantSaveError.class)
-	public ResponseEntity<ErrorMsg> orderGrantSaveError(OrderGrantSaveError ex){
+	public ResponseEntity<ErrorMsg> orderGrantSaveError(OrderGrantSaveError ex) {
 		ErrorMsg msg = new ErrorMsg();
 		msg.setErrorCode(400);
 		msg.setErrorMsg(ex.getMessage());
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg) ;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
 	}
-	
+
 	@ExceptionHandler(value = IncorrectResultSizeDataAccessException.class)
-	public ResponseEntity<ErrorMsg> orderGrantSaveError(IncorrectResultSizeDataAccessException ex){
+	public ResponseEntity<ErrorMsg> orderGrantSaveError(IncorrectResultSizeDataAccessException ex) {
 		ErrorMsg msg = new ErrorMsg();
 		msg.setErrorCode(400);
 		msg.setErrorMsg(ex.getLocalizedMessage());
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg) ;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
 	}
-	
+
 }
