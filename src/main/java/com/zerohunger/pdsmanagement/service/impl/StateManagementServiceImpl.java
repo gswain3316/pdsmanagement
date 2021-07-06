@@ -15,9 +15,9 @@ import com.zerohunger.pdsmanagement.domain.State;
 import com.zerohunger.pdsmanagement.domain.StateAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
+import com.zerohunger.pdsmanagement.exception.EntityNotFoundException;
 import com.zerohunger.pdsmanagement.exception.OrderGrantSaveError;
 import com.zerohunger.pdsmanagement.exception.OrderRequestSaveError;
-import com.zerohunger.pdsmanagement.exception.RequestStatusNotFoundException;
 import com.zerohunger.pdsmanagement.repository.OrderGrantRepository;
 import com.zerohunger.pdsmanagement.repository.OrderRequestRepository;
 import com.zerohunger.pdsmanagement.repository.RequestStatusRepository;
@@ -50,16 +50,31 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
-		return Mono.just(stateAvailabilityRepo.findOneByStateName(stateName));
+		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(stateName));
+		if(availableState.isPresent()){
+			log.info("Ration Availability Service Completed !");
+			return Mono.just(availableState.get());
+		}else{
+			log.info("Ration Availability Service Error ! - State Not Found");
+			return Mono.error(new EntityNotFoundException("State Not Found "+stateName));
+		}
 	}
 
 	@Override
 	public Mono<State> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
-		return Mono.just(stateRepo.findOneByStateName(stateName));
+		log.info("State Capacity Service Started !");
+		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(stateName));
+		if(stateCapacity.isPresent()){
+			log.info("State Capacity Service Completed !");
+			return Mono.just(stateCapacity.get());
+		}else{
+			log.info("State Capacity Service Error ! - State Not Found");
+			return Mono.error(new EntityNotFoundException("State Not Found "+stateName));
+		}
 	}
 
 	@Override
-	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws OrderRequestSaveError, IncorrectResultSizeDataAccessException{
+	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws IncorrectResultSizeDataAccessException{
 		log.info("Request for Ration Service Started !");
 		Date date = new Date();
 		OrderRequest orderRequestFinal = new OrderRequest(orderRequest.getRequestingStateName(),
@@ -71,12 +86,12 @@ public class StateManagementServiceImpl implements StateManagementService {
 			return Mono.just(dbRes.get());
 		}
 		else
-			throw new OrderRequestSaveError("Invalid Request is Sent ! Please send Valid Request !");
+			return Mono.error(new OrderRequestSaveError("Request for Ration Service Error ! - Order Request Save Failed"));
 
 	}
 
 	@Override
-	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) throws OrderGrantSaveError, IncorrectResultSizeDataAccessException {
+	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) throws IncorrectResultSizeDataAccessException {
 		log.info("Grant Order Service Started !");
 		Date date = new Date();
 		OrderGrant orderGrantFinal = new OrderGrant(orderGrant.getGrantingStateName(), orderGrant.getRequestId(),
@@ -93,17 +108,21 @@ public class StateManagementServiceImpl implements StateManagementService {
 			return Mono.just(grantOrderRes.get());
 		}
 		else
-			throw new OrderGrantSaveError("Invalid Request is Sent ! Please send Valid Request !");
+			return Mono.error(new OrderGrantSaveError("Grant Order Service Error ! - Order Grant Save Failed"));
 		
 	}
 
 	@Override
-	public Mono<RequestStatus> getOrderStatus(String requestId) throws RequestStatusNotFoundException, IncorrectResultSizeDataAccessException {
+	public Mono<RequestStatus> getOrderStatus(String requestId) throws IncorrectResultSizeDataAccessException {
 		log.info("Get Order Status Service Started !");
 		Optional<RequestStatus> dbRes = requestStatusRepo.findOneByRequestId(requestId);
-		if(dbRes.isPresent())
+		if (dbRes.isPresent()) {
+			log.info("Get Order Status Service Completed !");
 			return Mono.just(dbRes.get());
-		else
-			throw new RequestStatusNotFoundException(requestId+" is not found in our database records!");
+		}
+		else{
+			log.info("Get Order Status Service Error ! - Request Not Found");
+			return Mono.error(new EntityNotFoundException("Request Not Found "+requestId));
+		}
 	}
 }
