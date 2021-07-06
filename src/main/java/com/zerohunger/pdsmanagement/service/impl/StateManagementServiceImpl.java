@@ -54,12 +54,8 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
-<<<<<<< HEAD
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
 		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
-=======
-		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(stateName));
->>>>>>> 802796a... state not found exception added, request exception change to entity
 		if(availableState.isPresent()){
 			log.info("Ration Availability Service Completed !");
 			return Mono.just(availableState.get());
@@ -72,12 +68,8 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<State> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
-<<<<<<< HEAD
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
 		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
-=======
-		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(stateName));
->>>>>>> 802796a... state not found exception added, request exception change to entity
 		if(stateCapacity.isPresent()){
 			log.info("State Capacity Service Completed !");
 			return Mono.just(stateCapacity.get());
