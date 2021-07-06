@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.zerohunger.pdsmanagement.constants.OrderRequestStatus;
+import com.zerohunger.pdsmanagement.constants.StateList;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
@@ -53,7 +54,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<StateAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
-		StateInCamelCase = StringUtils.capitalize(stateName);
+		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
 		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
 		if(availableState.isPresent()){
 			log.info("Ration Availability Service Completed !");
@@ -67,7 +68,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<State> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
-		StateInCamelCase = StringUtils.capitalize(stateName);
+		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
 		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
 		if(stateCapacity.isPresent()){
 			log.info("State Capacity Service Completed !");
@@ -81,13 +82,19 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws IncorrectResultSizeDataAccessException{
 		log.info("Request for Ration Service Started !");
+		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderRequest.getRequestingStateName())).getName());
+		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
+			log.info("Request for Ration Service Error ! - State Not Found");
+			return Mono.error(new EntityNotFoundException("State Not Found "+orderRequest.getRequestingStateName()));
+		}
 		Date date = new Date();
-		OrderRequest orderRequestFinal = new OrderRequest(orderRequest.getRequestingStateName(),
+		OrderRequest orderRequestFinal = new OrderRequest(StateInCamelCase,
 				orderRequest.getRawMaterialName(), orderRequest.getQuantity(), orderRequest.getUnits(), true, date,
 				date);
 		Optional<OrderRequest> dbRes = Optional.ofNullable(orderRequestRepo.save(orderRequestFinal));
 		if(dbRes.isPresent()) {
-			requestStatusRepo.save(new RequestStatus(dbRes.get().getId(), OrderRequestStatus.PENDING, 0.0));
+			requestStatusRepo.save(new RequestStatus(dbRes.get().getId(), OrderRequestStatus.PENDING, 0.0, dbRes.get().getQuantity()));
+			log.info("Request for REQUEST STATUS Completed ! Quantity Remaining: " + dbRes.get().getQuantity());
 			return Mono.just(dbRes.get());
 		}
 		else
@@ -98,6 +105,11 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) throws IncorrectResultSizeDataAccessException {
 		log.info("Grant Order Service Started !");
+		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderGrant.getGrantingStateName())).getName());
+		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
+			log.info("Request for Ration Service Error ! - State Not Found");
+			return Mono.error(new EntityNotFoundException("State Not Found "+orderGrant.getGrantingStateName()));
+		}
 		Date date = new Date();
 		OrderGrant orderGrantFinal = new OrderGrant(orderGrant.getGrantingStateName(), orderGrant.getRequestId(),
 				orderGrant.getQuantityGranted(), date, date);
@@ -130,13 +142,14 @@ public class StateManagementServiceImpl implements StateManagementService {
 		RequestStatus requestStatus = requestStatusRepo.findOneByRequestId(orderGrant.getRequestId()).get();
 		if(orderRequest.getQuantity().equals(orderGrant.getQuantity())) {
 			orderRequest.setIsActive(false);
-			requestStatus.setStatus(OrderRequestStatus.FULLFILLED);
+			requestStatus.setStatus(OrderRequestStatus.FULFILLED);
 		}
 		else 
-			requestStatus.setStatus(OrderRequestStatus.ACCEPTED_BY_STATE);
+			requestStatus.setStatus(OrderRequestStatus.PARTIALY_FULFILLED);
 		Double remainingQuantity = orderRequest.getQuantity() - orderGrant.getQuantity();
 		orderRequest.setQuantity(remainingQuantity);
 		requestStatus.setQuantityFulfilled(orderGrant.getQuantity());
+		requestStatus.setQuantityRemaining(remainingQuantity);
 		orderRequestRepo.save(orderRequest);
 		requestStatusRepo.save(requestStatus);	
 		

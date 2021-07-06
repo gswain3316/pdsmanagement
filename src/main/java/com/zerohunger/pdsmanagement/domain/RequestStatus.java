@@ -23,11 +23,14 @@ public class RequestStatus {
 	private OrderRequestStatus status;
 	@Schema(description = "Quantity Granted by Granting State to the Requestor")
 	private Double quantityFulfilled;
-	public RequestStatus(String requestId, OrderRequestStatus status, Double quantityFulfilled) {
+	@Schema(description = "Quantity Remaining to be Fulfiiled for Requesting State")
+	private Double quantityRemaining;
+	public RequestStatus(String requestId, OrderRequestStatus status, Double quantityFulfilled, Double quantityRemaining) {
 		super();
 		this.requestId = requestId;
 		this.status = status;
 		this.quantityFulfilled = quantityFulfilled;
+		this.quantityRemaining = quantityRemaining;
 	}
 	
 }
