@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Availability {
+public class RawMaterialAvailability {
 	
 	private String rawMaterialName;
 	private Double availableQuantity;

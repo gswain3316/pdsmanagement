@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
-import com.zerohunger.pdsmanagement.domain.State;
-import com.zerohunger.pdsmanagement.domain.StateAvailability;
+import com.zerohunger.pdsmanagement.domain.GovBody;
+import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
@@ -41,13 +41,13 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<StateAvailability>> getRationAvailability(@RequestParam String stateName) {
+	public Mono<ResponseEntity<GovBodyRawMaterialAvailability>> getRationAvailability(@RequestParam String stateName) {
 		if (stateName != null) {
 			log.info("Ration Availability Controller Started !");
 			return stateManagementService.getRationAvailability(stateName).map(state -> ResponseEntity.ok(state))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new StateAvailability(), HttpStatus.BAD_REQUEST));
+			return Mono.just(new ResponseEntity<>(new GovBodyRawMaterialAvailability(), HttpStatus.BAD_REQUEST));
 	}
 
 	@GetMapping("/ration-capacity")
@@ -58,12 +58,12 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<State>> getStateCapacity(@RequestParam String stateName) {
+	public Mono<ResponseEntity<GovBody>> getStateCapacity(@RequestParam String stateName) {
 		if (stateName != null) {
 			return stateManagementService.getStateCapacity(stateName).map(state -> ResponseEntity.ok(state))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new State(), HttpStatus.BAD_REQUEST));
+			return Mono.just(new ResponseEntity<>(new GovBody(), HttpStatus.BAD_REQUEST));
 	}
 
 	@PostMapping("/ration-request")
