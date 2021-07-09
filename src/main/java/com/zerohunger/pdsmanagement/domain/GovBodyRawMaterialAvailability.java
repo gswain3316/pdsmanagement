@@ -10,21 +10,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Document(collection = "StateAvailability")
+@Document(collection = "GovBodyRawMaterialAvailability")
 @NoArgsConstructor
 @Schema(description = "Model to Get availability of all Rations for a particular State")
-public class StateAvailability {
+public class GovBodyRawMaterialAvailability {
 
 	@Id
 	private String id;
+	@Schema(description = "Name of District")
+	private String districtName;
 	@Schema(description = "Name of State")
 	private String stateName;
 	@Schema(description = "Availability of Ration Name along with Quantity")
-	private List<Availability> availability;
-	public StateAvailability(String stateName, List<Availability> availability) {
+	private List<RawMaterialAvailability> availability;
+	public GovBodyRawMaterialAvailability(String stateName, List<RawMaterialAvailability> availability) {
 		super();
 		this.stateName = stateName;
 		this.availability = availability;
+	}
+
+	//constructor without id
+	public GovBodyRawMaterialAvailability(String stateName, List<RawMaterialAvailability> availability, String districtName) {
+		super();
+		this.stateName = stateName;
+		this.availability = availability;
+		this.districtName = districtName;
 	}
 	
 }

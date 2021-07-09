@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.zerohunger.pdsmanagement.domain.Availability;
+import com.zerohunger.pdsmanagement.domain.RawMaterialAvailability;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,11 +22,11 @@ public class PdsmanagementLocalApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//Meta metaData = new Meta("Gaurav Swain", "gswain3316@gmail.com");
-		List<Availability> availabilityList = new ArrayList<>();
-		availabilityList.add(new Availability("Rice", 4356.30));
-		availabilityList.add(new Availability("Wheat", 2389.67));
-		availabilityList.add(new Availability("Sugar", 7490.67));
-		availabilityList.add(new Availability("Coarse Grain", 4528.67));
+		List<RawMaterialAvailability> availabilityList = new ArrayList<>();
+		availabilityList.add(new RawMaterialAvailability("Rice", 4356.30));
+		availabilityList.add(new RawMaterialAvailability("Wheat", 2389.67));
+		availabilityList.add(new RawMaterialAvailability("Sugar", 7490.67));
+		availabilityList.add(new RawMaterialAvailability("Coarse Grain", 4528.67));
 		//requestStatusRepo.save(new RequestStatus("60c5e45dc533f47b9f9742ea", OrderRequestStatus.PENDING, 0.00));
 		//metaRepository.save(metaData);
 		// stateRepository.save(new State("Madhya ", metaData, 256789.89));
