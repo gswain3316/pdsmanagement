@@ -15,6 +15,7 @@ public class OrderRequest {
 
 	@Id
 	private String id;
+	private String requestingDistrictName;
 	private String requestingStateName;
 	private String rawMaterialName;
 	private Double quantity;
@@ -37,6 +38,19 @@ public class OrderRequest {
 		this.isActive = isActive;
 		this.createdOn = createdOn;
 		this.modifiedOn = modifiedOn;
+	}
+
+	//constructor with all fields
+	public OrderRequest(String requestingStateName, String rawMaterialName, Double quantity, String unitsRequested,	Boolean isActive, Date createdOn, Date modifiedOn, String requestingDistrictName) {
+		super();
+		this.requestingStateName = requestingStateName;
+		this.rawMaterialName = rawMaterialName;
+		this.quantity = quantity;
+		this.unitsRequested = unitsRequested;
+		this.isActive = isActive;
+		this.createdOn = createdOn;
+		this.modifiedOn = modifiedOn;
+		this.requestingDistrictName = requestingDistrictName;
 	}
 	
 }

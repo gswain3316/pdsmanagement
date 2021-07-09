@@ -13,8 +13,8 @@ import com.zerohunger.pdsmanagement.constants.StateList;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
-import com.zerohunger.pdsmanagement.domain.State;
-import com.zerohunger.pdsmanagement.domain.StateAvailability;
+import com.zerohunger.pdsmanagement.domain.GovBody;
+import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
 import com.zerohunger.pdsmanagement.exception.EntityNotFoundException;
@@ -52,10 +52,10 @@ public class StateManagementServiceImpl implements StateManagementService {
 	private static String StateInCamelCase = "";
 
 	@Override
-	public Mono<StateAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
+	public Mono<GovBodyRawMaterialAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
-		Optional<StateAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
+		Optional<GovBodyRawMaterialAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
 		if(availableState.isPresent()){
 			log.info("Ration Availability Service Completed !");
 			return Mono.just(availableState.get());
@@ -66,10 +66,10 @@ public class StateManagementServiceImpl implements StateManagementService {
 	}
 
 	@Override
-	public Mono<State> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
+	public Mono<GovBody> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
-		Optional<State> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
+		Optional<GovBody> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
 		if(stateCapacity.isPresent()){
 			log.info("State Capacity Service Completed !");
 			return Mono.just(stateCapacity.get());
