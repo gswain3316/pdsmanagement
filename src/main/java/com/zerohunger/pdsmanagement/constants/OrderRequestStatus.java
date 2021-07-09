@@ -2,7 +2,7 @@ package com.zerohunger.pdsmanagement.constants;
 
 public enum OrderRequestStatus {
 
-	ACCEPTED_BY_STATE("AcceptedByState"), PENDING("Pending"), CRITICAL("Critical"), WITHDRAWN("Withdrawn");
+	PARTIALY_FULFILLED("PartialyFulfilled"), PENDING("Pending"), CRITICAL("Critical"), WITHDRAWN("Withdrawn"), FULFILLED("Fulfilled");
 
 	private final String orderStatus;
 

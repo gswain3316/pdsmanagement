@@ -111,7 +111,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "400", description = "Bad Request"),
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
-	public Mono<ResponseEntity<RequestStatus>> getOrderStatus(@RequestParam String requestId){
+	public Mono<ResponseEntity<RequestStatus>> getOrderStatus(@RequestParam String requestId) {
 		if (requestId != null) {
 			return stateManagementService.getOrderStatus(requestId)
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
@@ -129,7 +129,7 @@ public class StateManagementController {
 			@ApiResponse(responseCode = "500", description = "Internal Server Error")
 	})
 	public String welcome() {
-		return "PDS App is runnning fine !";
+		return "PDS App State Version is runnning fine !";
 	}
 
 }

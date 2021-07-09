@@ -13,8 +13,8 @@ Our project is based on the theme of Zero Hunger problem and is intended for the
     - [What's the problem?](#whats-the-problem)
     - [How can technology help?](#how-can-technology-help)
     - [The idea](#the-idea)
+  - [The Architecture](#the-architecture)
   - [Schema](#schema)
-  - [Long description](#long-description)
   - [Project roadmap](#project-roadmap)
   - [Getting started](#getting-started)
   - [Live demo](#live-demo)
@@ -43,11 +43,24 @@ By bringing the paper ledgers of food co-ops online, communities can harness dat
 
 To improve access to basic ration/food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
 
+## The architecture
+
+![Video transcription/translation app](https://github.com/gswain3316/pdsmanagement/blob/main/Architecture.png?raw=true)
+
+1. The user navigates to the PDSMangement App dashboard or UI.
+2. The user can then check the Availability of the Ration(wheat/rice/coarse grain/sugar) for the particular State/District.
+3. The user can use the UI or Swagger UI to place Order Requests or Grant Orders for the Ration.
+4. The app processes all the requests instantly in real-time and generates an order statement or order note for reference.
+5. User can create their Ration Card online and get it deliverd to PDS, also user can check on their Available Quota for Ration.
+6. The app will analyze all the data(Requests/Grants) transactions and create a Graph representation and can predict the future requirements as well.
+
 ## Schema
 
 Please follow the link for the schema design for our project: [Click Here](https://gist.github.com/ayushgupta11/9b76468646249c01fc4f35d6a1ce4703)
 
 ## Project roadmap
+
+![Video transcription/translation app](https://github.com/gswain3316/pdsmanagement/blob/main/ProductRoadMap.png?raw=true)
 
 The project currently does the following things.
 
@@ -89,12 +102,13 @@ Epic 5 - Applying AI / ML to the vast datasets and predicting future requirement
 In this section you add the instructions to run your project on your local machine for development and testing purposes. You can also add instructions on how to deploy the project in production.
 1. Import the project as a maven project
 2. Run the project as spring boot application
-3. Swagger will be available at `http://localhost:8181/swagger-ui.html`
+3. Swagger will be available at `http://localhost:8181/swagger-ui/`
 4. Refer to endpoints in swagger. You can directly run endpoints in swagger or from tools like postman, etc.
 
 ## Live demo
 
-You can find a running system to test at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
+ - You can find a live running system to test at [https://pdsmanagement.herokuapp.com/] (PDS Management App) & [https://pdsmanagement.herokuapp.com/swagger-ui/] (PDS Management App Swagger URL).
+ - You can find the docker image of the running system at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
 
 ## Built with
 
