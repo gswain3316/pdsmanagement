@@ -1,0 +1,88 @@
+const states = {
+    id: UUID,
+    stateName: STRING,
+    metaData: OBJECT,
+    capacity: FLOAT
+}
+
+const districts = {
+    id: UUID,
+    districtName: STRING,
+    stateName: STRING,
+    metaData: OBJECT,
+    capacity: FLOAT
+}
+
+const govtEntities = {
+    id: UUID,
+    entityName: STRING,
+    metaData: OBJECT,
+    capacity: FLOAT
+}
+
+const rawMaterials = {
+    id: UUID,
+    name: STRING
+}
+
+const stateAvailability = {
+    id: UUID,
+    stateName: STRING,
+    availability: [
+        {
+            rawMaterialName: STRING,
+            availableQuantity: FLOAT
+        }
+    ]
+}
+
+const districtAvailability = {
+    id: UUID,
+    districtName: STRING,
+    availability: [
+        {
+            rawMaterialName: STRING,
+            availableQuantity: FLOAT
+        }
+    ]
+}
+
+const entityAvailability = {
+    id: UUID,
+    entityName: STRING,
+    availability: [
+        {
+            rawMaterialName: STRING,
+            availableQuantity: FLOAT
+        }
+    ]
+}
+
+const requestOrders = {
+    id: UUID,
+    requestingEntityName: STRING,
+    requestEntityType: STRING, // district or state
+    rawMaterialName: STRING,
+    quantity: FLOAT,
+    unitsRequested: VARCHAR,
+    isActive: BOOLEAN,
+    createdOn: DATE,
+    modifiedOn: DATE
+}
+
+const grantOrders = {
+    id: UUID,
+    grantingEntityName: STRING,
+    grantEntityType: STRING, // district or state
+    requestId: UUID,
+    quantity: FLOAT,
+    createdOn: DATE,
+    modifiedOn: DATE
+}
+
+const requestStatus = {
+    id: UUID,
+    requestId: UUID,
+    status: VARCHAR,
+    quantityFulfilled: FLOAT
+}
