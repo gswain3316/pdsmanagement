@@ -41,4 +41,12 @@ public class PdsManagementException {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
 	}
 
+	@ExceptionHandler(value = IllegalArgumentException.class)
+	public ResponseEntity<ErrorMsg> orderGrantSaveError(IllegalArgumentException ex) {
+		ErrorMsg msg = new ErrorMsg();
+		msg.setErrorCode(400);
+		msg.setErrorMsg(ex.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(msg);
+	}
+
 }

@@ -1,7 +1,15 @@
 package com.zerohunger.pdsmanagement.controller;
 
+import com.zerohunger.pdsmanagement.domain.GovBody;
+import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
+import com.zerohunger.pdsmanagement.domain.OrderGrant;
+import com.zerohunger.pdsmanagement.domain.OrderRequest;
+import com.zerohunger.pdsmanagement.domain.RequestStatus;
+import com.zerohunger.pdsmanagement.dto.OrderGrantService;
+import com.zerohunger.pdsmanagement.dto.OrderRequestService;
+import com.zerohunger.pdsmanagement.service.StateManagementService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,15 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.zerohunger.pdsmanagement.domain.OrderGrant;
-import com.zerohunger.pdsmanagement.domain.OrderRequest;
-import com.zerohunger.pdsmanagement.domain.RequestStatus;
-import com.zerohunger.pdsmanagement.domain.GovBody;
-import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
-import com.zerohunger.pdsmanagement.dto.OrderGrantService;
-import com.zerohunger.pdsmanagement.dto.OrderRequestService;
-import com.zerohunger.pdsmanagement.service.StateManagementService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -47,7 +46,7 @@ public class StateManagementController {
 			return stateManagementService.getRationAvailability(stateName).map(state -> ResponseEntity.ok(state))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new GovBodyRawMaterialAvailability(), HttpStatus.BAD_REQUEST));
+			return Mono.error(new IllegalArgumentException("State Name is not provided"));
 	}
 
 	@GetMapping("/ration-capacity")
@@ -63,7 +62,7 @@ public class StateManagementController {
 			return stateManagementService.getStateCapacity(stateName).map(state -> ResponseEntity.ok(state))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new GovBody(), HttpStatus.BAD_REQUEST));
+			return Mono.error(new IllegalArgumentException("State Name is not provided"));
 	}
 
 	@PostMapping("/ration-request")
@@ -81,7 +80,7 @@ public class StateManagementController {
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new OrderRequest(), HttpStatus.BAD_REQUEST));
+			return Mono.error(new IllegalArgumentException("Order Request is not provided"));
 	}
 
 	@PostMapping("/grant-order")
@@ -99,7 +98,7 @@ public class StateManagementController {
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new OrderGrant(), HttpStatus.BAD_REQUEST));
+			return Mono.error(new IllegalArgumentException("Grant Order is not provided"));
 
 	}
 	
@@ -117,7 +116,7 @@ public class StateManagementController {
 					.map(saveOrderRequest -> ResponseEntity.ok(saveOrderRequest))
 					.defaultIfEmpty(ResponseEntity.notFound().build());
 		} else
-			return Mono.just(new ResponseEntity<>(new RequestStatus(), HttpStatus.BAD_REQUEST));
+			return Mono.error(new IllegalArgumentException("Request Id is not provided"));
 	}
 	
 	@GetMapping
