@@ -1,0 +1,49 @@
+const states = {
+    id: UUID,
+    stateName: STRING,
+    metaData: OBJECT,
+    capacity: FLOAT
+}
+
+const rawMaterials = {
+    id: UUID,
+    name: STRING
+}
+
+const stateAvailability = {
+    id: UUID,
+    stateName: STRING,
+    availability: [
+        {
+            rawMaterialName: STRING,
+            availableQuantity: FLOAT
+        }
+    ]
+}
+
+const requestOrders = {
+    id: UUID,
+    requestingStateName: STRING,
+    rawMaterialName: STRING,
+    quantity: FLOAT,
+    unitsRequested: VARCHAR,
+    isActive: BOOLEAN,
+    createdOn: DATE,
+    modifiedOn: DATE
+}
+
+const grantOrders = {
+    id: UUID,
+    grantingStateName: STRING,
+    requestId: UUID,
+    quantity: FLOAT,
+    createdOn: DATE,
+    modifiedOn: DATE
+}
+
+const requestStatus = {
+    id: UUID,
+    requestId: UUID,
+    status: VARCHAR,
+    quantityFulfilled: FLOAT
+}
