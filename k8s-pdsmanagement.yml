@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
         - name: k8s-pdsmanagement
-          image: kajalrawal/pdsmanagement
+          image: gswain3316/pdsmanagement:0.0.1-SNAPSHOT
           ports:
             - containerPort: 8181
