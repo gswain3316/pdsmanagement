@@ -17,6 +17,7 @@ public class OrderRequest {
 	private String id;
 	private String requestingDistrictName;
 	private String requestingStateName;
+	private Boolean isStateIndicator;
 	private String rawMaterialName;
 	private Double quantity;
 	private String unitsRequested;
@@ -29,7 +30,7 @@ public class OrderRequest {
 	private Date modifiedOn;
 	
 	public OrderRequest(String requestingStateName, String rawMaterialName, Double quantity, String unitsRequested,
-			Boolean isActive, Date createdOn, Date modifiedOn) {
+			Boolean isActive, Date createdOn, Date modifiedOn, Boolean isStateIndicator) {
 		super();
 		this.requestingStateName = requestingStateName;
 		this.rawMaterialName = rawMaterialName;
@@ -38,6 +39,7 @@ public class OrderRequest {
 		this.isActive = isActive;
 		this.createdOn = createdOn;
 		this.modifiedOn = modifiedOn;
+		this.isStateIndicator = isStateIndicator;
 	}
 
 	//constructor with all fields
