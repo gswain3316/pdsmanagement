@@ -51,11 +51,14 @@ public class StateManagementServiceImpl implements StateManagementService {
 
 	private static String StateInCamelCase = "";
 
+	private static Boolean isStateIndicator =false;
+
 	@Override
 	public Mono<GovBodyRawMaterialAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
-		Optional<GovBodyRawMaterialAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findOneByStateName(StateInCamelCase));
+		isStateIndicator = true;
+		Optional<GovBodyRawMaterialAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findGovBodyByStateNameAndIsStateIndicator(StateInCamelCase, isStateIndicator));
 		if(availableState.isPresent()){
 			log.info("Ration Availability Service Completed !");
 			return Mono.just(availableState.get());
@@ -69,7 +72,8 @@ public class StateManagementServiceImpl implements StateManagementService {
 	public Mono<GovBody> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
-		Optional<GovBody> stateCapacity = Optional.ofNullable(stateRepo.findOneByStateName(StateInCamelCase));
+		isStateIndicator = true;
+		Optional<GovBody> stateCapacity = Optional.ofNullable(stateRepo.findGovBodyByStateNameAndIsStateIndicator(StateInCamelCase, isStateIndicator));
 		if(stateCapacity.isPresent()){
 			log.info("State Capacity Service Completed !");
 			return Mono.just(stateCapacity.get());
@@ -83,6 +87,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws IncorrectResultSizeDataAccessException{
 		log.info("Request for Ration Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderRequest.getRequestingStateName())).getName());
+		isStateIndicator = true;
 		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
 			log.info("Request for Ration Service Error ! - State Not Found");
 			return Mono.error(new EntityNotFoundException("State Not Found "+orderRequest.getRequestingStateName()));
@@ -90,7 +95,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 		Date date = new Date();
 		OrderRequest orderRequestFinal = new OrderRequest(StateInCamelCase,
 				orderRequest.getRawMaterialName(), orderRequest.getQuantity(), orderRequest.getUnits(), true, date,
-				date);
+				date, isStateIndicator);
 		Optional<OrderRequest> dbRes = Optional.ofNullable(orderRequestRepo.save(orderRequestFinal));
 		if(dbRes.isPresent()) {
 			requestStatusRepo.save(new RequestStatus(dbRes.get().getId(), OrderRequestStatus.PENDING, 0.0, dbRes.get().getQuantity()));
@@ -106,13 +111,14 @@ public class StateManagementServiceImpl implements StateManagementService {
 	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) throws IncorrectResultSizeDataAccessException {
 		log.info("Grant Order Service Started !");
 		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderGrant.getGrantingStateName())).getName());
+		isStateIndicator = true;
 		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
 			log.info("Request for Ration Service Error ! - State Not Found");
 			return Mono.error(new EntityNotFoundException("State Not Found "+orderGrant.getGrantingStateName()));
 		}
 		Date date = new Date();
 		OrderGrant orderGrantFinal = new OrderGrant(orderGrant.getGrantingStateName(), orderGrant.getRequestId(),
-				orderGrant.getQuantityGranted(), date, date);
+				orderGrant.getQuantityGranted(), date, date, isStateIndicator);
 		Optional<OrderGrant> grantOrderRes = Optional.ofNullable(orderGrantRepo.save(orderGrantFinal));
 		if (grantOrderRes.isPresent()) {
 			updateOrderRequestAndRequestStatusOnGrantOrderNote(grantOrderRes.get());

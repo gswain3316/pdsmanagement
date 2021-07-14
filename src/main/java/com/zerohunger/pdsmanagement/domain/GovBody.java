@@ -18,7 +18,9 @@ public class GovBody {
 	@Schema(description = "Name of the District")
 	private String districtName;
 	@Schema(description = "Name of State")
-	private String stateName;
+	private String stateName;	
+	@Schema(description = "Indicator to determine if Entity is State or District")
+	private Boolean isStateIndicator;
 	@Schema(description = "Point of Contact for the Government Body/ SPOC")
 	private Meta metaData;
 	@Schema(description = "Total Capacity of the State/ District to hold Rations")
