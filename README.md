@@ -128,11 +128,8 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Authors
 
-- **Ankit Kumar** - [itank-z](https://github.com/itank-z)
 - **Ayush Gupta** - [ayushgupta11](https://github.com/ayushgupta11)
 - **Gaurav Swain** - [gswain3316](https://github.com/gswain3316)
-- **Kajal Rawal** - [Kajal Rawal](https://github.com/kajalrawal)
-- **Ravi Prakash** - [ravii-1996](https://github.com/ravii-1996)
 
 ## License
 
