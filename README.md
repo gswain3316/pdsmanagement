@@ -64,9 +64,9 @@ Please follow the link for the schema design for our project: [Click Here](https
 
 The project currently does the following things.
 
-- Able to fetch crop/food availability of all the states in the country
-- Able to create request for a state requesting a 1 or more crop/food as per their required quantity.
-- Able to grant request to a specific state which has enough crop available to be supplied to another state.
+- Able to fetch crop/food availability of all the states & districts in the country
+- Able to create request for a state or a district requesting a 1 or more crop/food as per their required quantity.
+- Able to grant request to a specific state or district which has enough crop available to be supplied to another state.
 
 Below is the project roadmap implemented till now:
 Epic 1- State Endpoint 
@@ -76,14 +76,14 @@ Epic 1- State Endpoint
 - Endpoint 4 : Granting/ place order note for other states to accept request for rice, wheat, coarse grain, sugar
 - Endpoint 5 : Order status endpoint for showing the current status of the order placed by the state
 
-See below for our proposed schedule on next steps after Call for Code 2021 submission.
-
 Epic 2- District Endpoint 
 - Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
 - Endpoint 2 : Capacity of district endpoint 
 - Endpoint 3 : Request for rice, wheat, coarse grains, sugar endpoint 
 - Endpoint 4 : Granting/ place order note for other districts to accept request for rice, wheat, coarse grain, sugar
 - Endpoint 5 : Order status endpoint for showing the current status of the order placed by the district
+
+See below for our proposed schedule on next steps after Call for Code 2021 submission.
 
 Epic 3- FPS/TPDS Endpoint 
 - Endpoint 1 : Availability of rice, wheat, coarse grain, sugar endpoint 
@@ -108,10 +108,11 @@ In this section you add the instructions to run your project on your local machi
 ## Live demo
 
  - You can find a live running system to test at [https://pdsmanagement.herokuapp.com/] (PDS Management App) & [https://pdsmanagement.herokuapp.com/swagger-ui/] (PDS Management App Swagger URL).
- - You can find the docker image of the running system at [http://docker.io/kajalrawal/pdsmanagement:latest](http://docker.io/kajalrawal/pdsmanagement:latest).
+ - You can find the docker image of the running system at [http://docker.io/gswain3316/pdsmanagement:latest](http://docker.io/gswain3316/pdsmanagement:latest).
 
 ## Built with
 
+- Graal VM Java Version 11
 - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot) - Rest API developed on springboot framework.
 - [Swagger 3.0.3](https://swagger.io/) - Rest API documentation and design tool
 - [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - Reactive-stack web framework.
