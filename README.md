@@ -108,11 +108,11 @@ In this section you add the instructions to run your project on your local machi
 ## Live demo
 
  - You can find a live running system to test at [https://pdsmanagement.herokuapp.com/] (PDS Management App) & [https://pdsmanagement.herokuapp.com/swagger-ui/] (PDS Management App Swagger URL).
- - You can find the docker image of the running system at [http://docker.io/gswain3316/pdsmanagement:latest](http://docker.io/gswain3316/pdsmanagement:latest).
+ - You can find the docker image of the running system at [http://docker.io/gswain3316/pdsmanagement:latest](https://hub.docker.com/r/gswain3316/pdsmanagement).
 
 ## Built with
 
-- Graal VM Java Version 11
+- [GraalVM Java Version 11](https://www.graalvm.org/) - Programming language used for app development.
 - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot) - Rest API developed on springboot framework.
 - [Swagger 3.0.3](https://swagger.io/) - Rest API documentation and design tool
 - [Spring Webflux 5.2.6](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - Reactive-stack web framework.
