@@ -56,7 +56,7 @@ To improve access to basic ration/food in local communities, especially those su
 
 ## Schema
 
-Please follow the link for the schema design for our project: [Click Here](https://gist.github.com/ayushgupta11/9b76468646249c01fc4f35d6a1ce4703)
+Please follow the link for the schema design for our project: [Click Here](https://github.com/gswain3316/pdsmanagement/tree/main/docs)
 
 ## Project roadmap
 
