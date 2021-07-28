@@ -120,6 +120,8 @@ In this section you add the instructions to run your project on your local machi
 - [Docker 19.0.3](https://docs.docker.com/) - Help to build, manage, and deploy containerized applications
 - [Kubernetes 1.2.0](https://kubernetes.io/) - Help to automating deployment, scaling, and management of containerized applications.
 - [Maven](https://maven.apache.org/) - Dependency management
+- [IBM Kubernetes Service](https://www.ibm.com/in-en/cloud/kubernetes-service) - IBM Cloud Services - Kubernetes Cluster
+- [Heroku](https://www.heroku.com/dynos) - Heroku Dynos to Deploy Microservices Application on Heroku PaaS platform
 
 
 ## Contributing
