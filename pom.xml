@@ -92,10 +92,10 @@
 				<executions>
 					<execution>
 						<id>default</id>
-						<goals>
+						<!-- <goals>
 							<goal>build</goal>
 							<goal>push</goal>
-						</goals>
+						</goals> -->
 					</execution>
 				</executions>
 				<configuration>
