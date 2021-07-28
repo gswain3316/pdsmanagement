@@ -1,10 +1,14 @@
 package com.zerohunger.pdsmanagement.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Schema(description = "Model for Order Request by a State who needs Ration from another State")
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderRequestService {
 	
 	@Schema(description = "District who needs Ration from other Districts in the same State")
