@@ -33,11 +33,12 @@ public class GovBodyRawMaterialAvailability {
 	}
 
 	//constructor without id
-	public GovBodyRawMaterialAvailability(String stateName, List<RawMaterialAvailability> availability, String districtName) {
+	public GovBodyRawMaterialAvailability(String stateName, List<RawMaterialAvailability> availability, String districtName, Boolean isStateIndicator) {
 		super();
 		this.stateName = stateName;
 		this.availability = availability;
 		this.districtName = districtName;
+		this.isStateIndicator = isStateIndicator;
 	}
 	
 }

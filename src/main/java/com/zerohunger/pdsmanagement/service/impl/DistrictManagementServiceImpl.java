@@ -126,7 +126,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
         Optional<GovBody> data = Optional.ofNullable(districtRepository.findOneByDistrictName(DistrictInCamelCase));
         // check if request is present in database
         Optional<OrderRequest> relatedOrderRequest = orderRequestRepository.findById(grantOrder.getRequestId());
-        if (data.isPresent() || relatedOrderRequest.isPresent()) {
+        if (data.isPresent() && relatedOrderRequest.isPresent()) {
             // check if granting district name and requesting district name belong to same
             // state
             if (grantOrder.getGrantingStateName().equals(relatedOrderRequest.get().getRequestingStateName())) {
@@ -152,7 +152,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
                         "Order Grant Service Error ! - Requesting and Granting Districts do not belong to same State"));
             }
         } else {
-            log.error("Ration Grant Service Failed ! District Name not Found " + grantOrder.getGrantingDistrictName());
+            log.error("Ration Grant Service Failed ! District Name or Request ID is not Found " + grantOrder.getGrantingDistrictName());
             return Mono.error(new EntityNotFoundException("District " + grantOrder.getGrantingDistrictName()
                     + " or Request ID " + grantOrder.getRequestId() + " Not Found"));
 
