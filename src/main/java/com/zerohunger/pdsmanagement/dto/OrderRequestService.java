@@ -7,6 +7,8 @@ import lombok.Data;
 @Schema(description = "Model for Order Request by a State who needs Ration from another State")
 public class OrderRequestService {
 	
+	@Schema(description = "District who needs Ration from other Districts in the same State")
+	private String requestingDistrictName;
 	@Schema(description = "State Name who is requesting for Ration to all the States who can Grant")
 	private String requestingStateName;
 	@Schema(description = "Name of the Ration")
@@ -15,5 +17,13 @@ public class OrderRequestService {
 	private Double quantity;
 	@Schema(description = "Unit in which Ration Needed - KG/Quintal/Gram")
 	private String units;
+
+	public OrderRequestService(String requestingStateName, String rawMaterialName, Double quantity, String units) {
+		this.requestingStateName = requestingStateName;
+		this.rawMaterialName = rawMaterialName;
+		this.quantity = quantity;
+		this.units = units;
+	}
+
 
 }
