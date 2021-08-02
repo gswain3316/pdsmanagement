@@ -1,4 +1,4 @@
-# PDS Management
+# Public Distribution System (PDS) Management Automation
 
 [![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue)](https://developer.ibm.com/callforcode/get-started/) [![Website](https://img.shields.io/badge/View-Website-blue)](https://sample-project.s3-web.us-east.cloud-object-storage.appdomain.cloud/)
 
@@ -7,7 +7,7 @@ Our project is based on the theme of Zero Hunger problem and is intended for the
 
 ## Contents
 
-- [PDS Management](#pds-management)
+- [PDS Management Automation](#pds-management-automation)
   - [Contents](#contents)
   - [Short description](#short-description)
     - [What's the problem?](#whats-the-problem)
@@ -42,6 +42,10 @@ By bringing the paper ledgers of food co-ops online, communities can harness dat
 ### The idea
 
 To improve access to basic ration/food in local communities, especially those suffering from acute hunger, co-operative systems can be digitized and enhanced. By aggregating and analyzing market, transportation, demand, horticultural, and environmental data, co-ops can optimize productivity, reduce overhead, and decrease volatility in the supply chain of the farming communities.
+
+## Demo video
+
+[![Watch the video](https://github.com/gswain3316/pdsmanagement/blob/main/docs/call_for_code_thumbnail.jpg)](https://youtu.be/KwrvW9jTMzs)
 
 ## The architecture
 
@@ -107,6 +111,7 @@ In this section you add the instructions to run your project on your local machi
 
 ## Live demo
 
+ - Please checkout the video for the application DEMO and application Summary [here](https://youtu.be/KwrvW9jTMzs)
  - You can find a live running system to test at [Pdsmanagement App in Heroku](https://pdsmanagement-app.herokuapp.com) & [Pdsmanagement App Swagger UI in Heroku](https://pdsmanagement-app.herokuapp.com/swagger-ui/).
  - You can Swagger Page for the Application Deployed on IBM Cloud Kubernetes Cluster at [IBM Cloud Kubernetes Cluster](http://169.51.205.252:30036/swagger-ui/)
  - You can find the docker image of the running system at [http://docker.io/gswain3316/pdsmanagement:latest](https://hub.docker.com/r/gswain3316/pdsmanagement).
