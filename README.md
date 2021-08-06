@@ -115,7 +115,7 @@ In this section you add the instructions to run your project on your local machi
 
  - Please checkout the video for the application DEMO and application Summary [here](https://youtu.be/KwrvW9jTMzs)
  - You can find a live running system to test at [Pdsmanagement App in Heroku](https://pdsmanagement-app.herokuapp.com) & [Pdsmanagement App Swagger UI in Heroku](https://pdsmanagement-app.herokuapp.com/swagger-ui/).
- - You can Swagger Page for the Application Deployed on IBM Cloud Kubernetes Cluster at [IBM Cloud Kubernetes Cluster](http://169.51.205.252:30036/swagger-ui/)
+ - You can Swagger Page for the Application Deployed on IBM Cloud Kubernetes Cluster at [IBM Cloud Kubernetes Cluster](http://169.51.205.252:30034/swagger-ui/)
  - You can find the docker image of the running system at [http://docker.io/gswain3316/pdsmanagement:latest](https://hub.docker.com/r/gswain3316/pdsmanagement).
 
 ## Built with
