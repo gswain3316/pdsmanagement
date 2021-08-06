@@ -25,19 +25,24 @@ public class GovBody {
 	private Meta metaData;
 	@Schema(description = "Total Capacity of the State/ District to hold Rations")
 	private Double capacity;
-	public GovBody(String stateName, Meta metaData, Double capacity) {
+	@Schema(description = "MeasuringUnit of the Capacity")
+	private String capacityUnit;
+
+	public GovBody(String stateName, Meta metaData, Double capacity, String capacityUnit) {
 		super();
 		this.stateName = stateName;
 		this.metaData = metaData;
 		this.capacity = capacity;
+		this.capacityUnit = capacityUnit;
 	}
 
 	//consructor without id
-	public GovBody(String stateName, Meta metaData, Double capacity, String districtName) {
+	public GovBody(String stateName, Meta metaData, Double capacity, String capacityUnit, String districtName) {
 		super();
 		this.stateName = stateName;
 		this.metaData = metaData;
 		this.capacity = capacity;
+		this.capacityUnit = capacityUnit;
 		this.districtName = districtName;
 	}
 
