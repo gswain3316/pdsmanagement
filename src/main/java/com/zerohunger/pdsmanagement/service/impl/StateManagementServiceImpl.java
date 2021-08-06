@@ -3,18 +3,13 @@ package com.zerohunger.pdsmanagement.service.impl;
 import java.util.Date;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import com.zerohunger.pdsmanagement.constants.OrderRequestStatus;
 import com.zerohunger.pdsmanagement.constants.StateList;
+import com.zerohunger.pdsmanagement.domain.GovBody;
+import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
 import com.zerohunger.pdsmanagement.domain.OrderGrant;
 import com.zerohunger.pdsmanagement.domain.OrderRequest;
 import com.zerohunger.pdsmanagement.domain.RequestStatus;
-import com.zerohunger.pdsmanagement.domain.GovBody;
-import com.zerohunger.pdsmanagement.domain.GovBodyRawMaterialAvailability;
 import com.zerohunger.pdsmanagement.dto.OrderGrantService;
 import com.zerohunger.pdsmanagement.dto.OrderRequestService;
 import com.zerohunger.pdsmanagement.exception.EntityNotFoundException;
@@ -26,6 +21,11 @@ import com.zerohunger.pdsmanagement.repository.RequestStatusRepository;
 import com.zerohunger.pdsmanagement.repository.StateAvailabilityRepository;
 import com.zerohunger.pdsmanagement.repository.StateRepository;
 import com.zerohunger.pdsmanagement.service.StateManagementService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.stereotype.Service;
+import org.apache.commons.text.WordUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -56,7 +56,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<GovBodyRawMaterialAvailability> getRationAvailability(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("Ration Availability Service Started !");
-		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
+		StateInCamelCase = WordUtils.capitalizeFully(StateList.getStateList(WordUtils.capitalizeFully(stateName)).getName());
 		isStateIndicator = true;
 		Optional<GovBodyRawMaterialAvailability> availableState = Optional.ofNullable(stateAvailabilityRepo.findGovBodyByStateNameAndIsStateIndicator(StateInCamelCase, isStateIndicator));
 		if(availableState.isPresent()){
@@ -71,7 +71,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<GovBody> getStateCapacity(String stateName) throws IncorrectResultSizeDataAccessException{
 		log.info("State Capacity Service Started !");
-		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(stateName)).getName());
+		StateInCamelCase = WordUtils.capitalizeFully(StateList.getStateList(WordUtils.capitalizeFully(stateName)).getName());
 		isStateIndicator = true;
 		Optional<GovBody> stateCapacity = Optional.ofNullable(stateRepo.findGovBodyByStateNameAndIsStateIndicator(StateInCamelCase, isStateIndicator));
 		if(stateCapacity.isPresent()){
@@ -86,7 +86,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) throws IncorrectResultSizeDataAccessException{
 		log.info("Request for Ration Service Started !");
-		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderRequest.getRequestingStateName())).getName());
+		StateInCamelCase = WordUtils.capitalizeFully(StateList.getStateList(WordUtils.capitalizeFully(orderRequest.getRequestingStateName())).getName());
 		isStateIndicator = true;
 		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
 			log.info("Request for Ration Service Error ! - State Not Found");
@@ -110,7 +110,7 @@ public class StateManagementServiceImpl implements StateManagementService {
 	@Override
 	public Mono<OrderGrant> grantOrderNote(OrderGrantService orderGrant) throws IncorrectResultSizeDataAccessException {
 		log.info("Grant Order Service Started !");
-		StateInCamelCase = StringUtils.capitalize(StateList.getStateList(StringUtils.capitalize(orderGrant.getGrantingStateName())).getName());
+		StateInCamelCase = WordUtils.capitalizeFully(StateList.getStateList(WordUtils.capitalizeFully(orderGrant.getGrantingStateName())).getName());
 		isStateIndicator = true;
 		if (StateInCamelCase.equals("Unknown")|| StateInCamelCase.equals("")){
 			log.info("Request for Ration Service Error ! - State Not Found");

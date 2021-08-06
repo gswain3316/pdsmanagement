@@ -9,6 +9,6 @@ public class RawMaterialAvailability {
 	
 	private String rawMaterialName;
 	private Double availableQuantity;
-	private String measurmentUnit;
+	private String measurementUnit;
 
 }

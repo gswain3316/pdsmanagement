@@ -7,6 +7,7 @@ public enum StateList {
     ASSAM("Assam"),
     CHHATTISGARH("Chhattisgarh"),
     DELHI("Delhi"),
+    BIHAR("Bihar"),
     GOA("Goa"),
     GUJARAT("Gujarat"),
     HARYANA("Haryana"),

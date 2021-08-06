@@ -23,7 +23,7 @@ import com.zerohunger.pdsmanagement.service.DistrictManagementService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.apache.commons.text.WordUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -55,7 +55,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
     public Mono<GovBodyRawMaterialAvailability> getRationAvailability(String districtName) {
         // get data from database using district name
         log.info(String.format("Getting Ration Availability for District: %s", districtName));
-        DistrictInCamelCase = StringUtils.capitalize(districtName);
+        DistrictInCamelCase = WordUtils.capitalizeFully(districtName);
         isStateIndicator = false;
         Optional<GovBodyRawMaterialAvailability> data = Optional
                 .ofNullable(districtAvailabilityRepository.findGovBodyByStateNameAndIsStateIndicator(DistrictInCamelCase, isStateIndicator));
@@ -71,7 +71,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
     @Override
     public Mono<GovBody> getDistrictCapacity(String districtName) {
         log.info(String.format("Getting Ration Capacity for District: %s", districtName));
-        DistrictInCamelCase = StringUtils.capitalize(districtName);
+        DistrictInCamelCase = WordUtils.capitalizeFully(districtName);
         isStateIndicator = false;
         Optional<GovBody> data = Optional.ofNullable(districtRepository.findGovBodyByStateNameAndIsStateIndicator(DistrictInCamelCase, isStateIndicator));
         if (data.isPresent()) {
@@ -86,7 +86,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
     @Override
     public Mono<OrderRequest> requestforRation(OrderRequestService orderRequest) {
         log.info(String.format("Requesting Ration for District: %s", orderRequest.getRequestingDistrictName()));
-        DistrictInCamelCase = StringUtils.capitalize(orderRequest.getRequestingDistrictName());
+        DistrictInCamelCase = WordUtils.capitalizeFully(orderRequest.getRequestingDistrictName());
         isStateIndicator = false;
         // check district name is present is database or not
         Optional<GovBody> data = Optional.ofNullable(districtRepository.findOneByDistrictName(DistrictInCamelCase));
@@ -120,7 +120,7 @@ public class DistrictManagementServiceImpl implements DistrictManagementService 
     @Override
     public Mono<OrderGrant> grantOrderNote(OrderGrantService grantOrder) {
         log.info(String.format("Granting Order Note for District: %s", grantOrder.getGrantingDistrictName()));
-        DistrictInCamelCase = StringUtils.capitalize(grantOrder.getGrantingDistrictName());
+        DistrictInCamelCase = WordUtils.capitalizeFully(grantOrder.getGrantingDistrictName());
         isStateIndicator = false;
         // check district name is present is database or not
         Optional<GovBody> data = Optional.ofNullable(districtRepository.findOneByDistrictName(DistrictInCamelCase));
